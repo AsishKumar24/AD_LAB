@@ -25,4 +25,8 @@ This repository contains coursework for the AD Lab, including various projects a
 - Built an **LLM-powered system** to convert natural language queries into SQL.
 - Integrated with **MySQL and Flask**.
 
-**Maintained by:** [kanikarawlo](https://github.com/kanikarawlo)
+- ### 6. Lab 8 - Used FAST API for sentiment Analysis
+- used youtube API to capture the comments
+- Implemented through HTML.
+
+
