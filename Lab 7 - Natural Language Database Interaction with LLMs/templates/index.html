@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Chatbot</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ask the Database 🤖</h1>
+        
+        <div class="chat-container">
+            <div id="chatbox">
+                {% for entry in chat_history %}
+                    <div class="chat-message user">
+                        <div class="message"><strong>You:</strong> {{ entry.query }}</div>
+                    </div>
+                    <div class="chat-message bot">
+                        <div class="message"><strong>Bot:</strong> {{ entry.answer }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+            
+            <form method="POST">
+                <input type="text" name="query" id="query" placeholder="Type your question..." required>
+                <button type="submit">➤</button>
+            </form>
+        </div>
+
+        {% if table_data %}
+            <h2>Query Result</h2>
+            <table>
+                <tr>
+                    {% for col in table_data.columns %}
+                        <th>{{ col }}</th>
+                    {% endfor %}
+                </tr>
+                {% for row in table_data.rows %}
+                    <tr>
+                        {% for value in row %}
+                            <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </div>
+</body>
+</html>
